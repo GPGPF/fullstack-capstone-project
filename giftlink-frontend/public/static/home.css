@@ -14,7 +14,6 @@ body {
 
 /* Task 2: Create a pseudo-element for the background and blur */
 body::before {
-    /* insert code here */
     position: fixed;
     top:0;
     left:0;
