@@ -38,9 +38,11 @@ app.use(pinoHttp({ logger }));
 // Use Routes
 // Gift API Task 2: add the giftRoutes to the server by using the app.use() method.
 //{{insert code here}}
+app.use("/api/gifts",giftRouter);
 
 // Search API Task 2: add the searchRoutes to the server by using the app.use() method.
 //{{insert code here}}
+app.use("/api/search",searchRouter);
 
 
 // Global Error Handler
@@ -52,8 +54,6 @@ app.use((err, req, res, next) => {
 app.get("/",(req,res)=>{
     res.send("Inside the server")
 })
-app.use("/api/gifts",giftRouter);
-app.use("/api/search",searchRouter);
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
