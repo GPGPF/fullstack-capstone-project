@@ -6,9 +6,12 @@ const pinoLogger = require('./logger');
 
 const connectToDatabase = require('./models/db');
 const {loadData} = require("./util/import-mongo/index");
-
+// Route files
+// Gift API Task 1: import the giftRoutes and store in a constant called giftroutes
 const giftRouter=require("./routes/giftRoutes");
+// Search API Task 1: import the searchRoutes and store in a constant called searchRoutes
 const searchRouter=require("./routes/searchRoutes");
+const authRouter=require("./routes/authRoutes");
 
 const app = express();
 app.use("*",cors());
@@ -23,26 +26,15 @@ connectToDatabase().then(() => {
 
 app.use(express.json());
 
-// Route files
-// Gift API Task 1: import the giftRoutes and store in a constant called giftroutes
-//{{insert code here}}
-// Search API Task 1: import the searchRoutes and store in a constant called searchRoutes
-//{{insert code here}}
-
-
 const pinoHttp = require('pino-http');
 const logger = require('./logger');
 
 app.use(pinoHttp({ logger }));
 
 // Use Routes
-// Gift API Task 2: add the giftRoutes to the server by using the app.use() method.
-//{{insert code here}}
 app.use("/api/gifts",giftRouter);
-
-// Search API Task 2: add the searchRoutes to the server by using the app.use() method.
-//{{insert code here}}
 app.use("/api/search",searchRouter);
+app.use("/api/auth",authRouter);
 
 
 // Global Error Handler
